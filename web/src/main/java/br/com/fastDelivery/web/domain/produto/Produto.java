@@ -1,5 +1,6 @@
 package br.com.fastDelivery.web.domain.produto;
 
+import br.com.fastDelivery.web.domain.restaurante.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Entity(name = "Produto")
-@Table(name = "produto")
+@Table(name = "produtos")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -25,8 +26,9 @@ public class Produto {
     @Column(nullable = false)
     private BigDecimal preco;
 
-    @Column(nullable = false)
-    private BigDecimal cupomDesconto;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false, name = "id_restaurante")
+    private Restaurante restaurante;
 
 
 }

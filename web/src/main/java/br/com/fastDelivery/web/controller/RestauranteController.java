@@ -6,7 +6,6 @@ import br.com.fastDelivery.web.domain.dto.restaurante.DadosDetalhamentoRestauran
 import br.com.fastDelivery.web.domain.dto.restaurante.DadosListagemRestaurante;
 import br.com.fastDelivery.web.domain.service.RestauranteService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

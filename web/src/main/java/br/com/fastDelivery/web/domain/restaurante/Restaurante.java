@@ -35,21 +35,26 @@ public class Restaurante {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "restaurantes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "hora_abertura")
     private LocalTime horaAbertura;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "hora_fechamento")
     private LocalTime horaFechamento;
 
     @Column(nullable = false)
+    private String telefone;
+
+    @Column(nullable = false)
+    private String cnpj;
+
+    @Column(nullable = false, name = "pedido_minimo")
     private BigDecimal pedidoMinimo;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurantes", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_produto")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Produto> produtos = new ArrayList<>();
 
     @Column(nullable = false)
