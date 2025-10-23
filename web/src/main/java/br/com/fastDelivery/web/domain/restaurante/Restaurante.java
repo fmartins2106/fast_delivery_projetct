@@ -5,12 +5,10 @@ import br.com.fastDelivery.web.domain.dto.restaurante.DadosCadastroRestaurante;
 import br.com.fastDelivery.web.domain.endereco.Endereco;
 import br.com.fastDelivery.web.domain.produto.Produto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
@@ -65,6 +63,8 @@ public class Restaurante {
         this.nome = dadosCadastroRestaurante.nome();
         this.categoria = dadosCadastroRestaurante.categoria();
         this.endereco = dadosCadastroRestaurante.endereco();
+        this.cnpj = dadosCadastroRestaurante.cnpj();
+        this.telefone = dadosCadastroRestaurante.telefone();
         this.horaAbertura = dadosCadastroRestaurante.horaAbertura();
         this.horaFechamento = dadosCadastroRestaurante.horaFechamento();
         this.pedidoMinimo = dadosCadastroRestaurante.pedidoMinimo();

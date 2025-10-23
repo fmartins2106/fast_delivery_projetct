@@ -2,6 +2,7 @@ package br.com.fastDelivery.web.domain.dto.restaurante;
 
 import br.com.fastDelivery.web.domain.endereco.Endereco;
 import br.com.fastDelivery.web.domain.restaurante.Categoria;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -20,7 +21,8 @@ public record DadosCadastroRestaurante(
         @Pattern(regexp = "^\\d{14}$", message = "CNPJ deve conter exatamente 14 dígitos numéricos")
         String cnpj,
 
-        @NotBlank(message = "Campo não pode ser vázio.")
+        @NotNull(message = "Campo não pode ser vázio.")
+        @Valid
         Endereco endereco,
 
         @NotNull(message = "Campo não pode ser vázio.")

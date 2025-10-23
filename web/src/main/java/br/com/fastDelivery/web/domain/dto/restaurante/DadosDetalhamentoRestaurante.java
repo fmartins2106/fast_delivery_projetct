@@ -11,13 +11,14 @@ public record DadosDetalhamentoRestaurante(
         Long id,
         String nome,
         Categoria categoria,
+        String cnpj,
         Endereco endereco,
         LocalTime horaAbertura,
         LocalTime horaFechamento,
         BigDecimal pedidoMinimo) {
 
     public DadosDetalhamentoRestaurante(Restaurante restaurante) {
-        this(restaurante.getId(), restaurante.getNome(), restaurante.getCategoria(),
+        this(restaurante.getId(), restaurante.getNome(), restaurante.getCategoria(),restaurante.getCnpj(),
                 restaurante.getEndereco(), restaurante.getHoraAbertura(), restaurante.getHoraFechamento(),
                 restaurante.getPedidoMinimo());
     }
