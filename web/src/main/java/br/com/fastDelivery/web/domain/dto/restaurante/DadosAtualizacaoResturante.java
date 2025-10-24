@@ -10,25 +10,14 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 
 public record DadosAtualizacaoResturante(
-        @NotBlank(message = "Campo não pode ser vázio.")
+
         String nome,
-
-        @NotNull(message = "Campo não pode ser vázio.")
         Categoria categoria,
-
-        @NotBlank(message = "Campo não pode ser vázio.")
         Endereco endereco,
-
-        @NotNull(message = "Campo não pode ser vázio.")
         LocalTime horaAbertura,
-
-        @NotNull(message = "Campo não pode ser vázio.")
         LocalTime horaFechamento,
 
-        @NotBlank(message = "Campo não pode ser vázio")
         @Pattern(regexp = "^[0-9]+$", message = "O telefone deve conter apenas números")
         String telefone,
-
-        @NotNull(message = "Campo não pode ser vázio.")
         BigDecimal pedidoMinimo) {
 }
