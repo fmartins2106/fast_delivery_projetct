@@ -71,12 +71,26 @@ public class Restaurante {
         this.ativo = true;
     }
 
+    public Restaurante(Long id) {
+        this.id = id;
+    }
+
     public void atualizarDados(DadosAtualizacaoResturante dadosAtualizacaoResturante) {
-        this.nome = dadosAtualizacaoResturante.nome();
-        this.categoria = dadosAtualizacaoResturante.categoria();
-        this.endereco = dadosAtualizacaoResturante.endereco();
-        this.horaAbertura = dadosAtualizacaoResturante.horaAbertura();
-        this.horaFechamento = dadosAtualizacaoResturante.horaFechamento();
+        if (dadosAtualizacaoResturante.nome() != null){
+            this.nome = dadosAtualizacaoResturante.nome();
+        }
+        if (dadosAtualizacaoResturante.categoria() != null){
+            this.categoria = dadosAtualizacaoResturante.categoria();
+        }
+        if (dadosAtualizacaoResturante.endereco() != null){
+            this.endereco = dadosAtualizacaoResturante.endereco();
+        }
+        if (dadosAtualizacaoResturante.horaAbertura() != null){
+            this.horaAbertura = dadosAtualizacaoResturante.horaAbertura();
+        }
+        if (dadosAtualizacaoResturante.horaFechamento() != null){
+            this.horaFechamento = dadosAtualizacaoResturante.horaFechamento();
+        }
     }
 
     public void inativarCadastro() {

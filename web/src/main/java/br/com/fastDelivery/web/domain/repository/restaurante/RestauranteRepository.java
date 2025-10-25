@@ -1,4 +1,4 @@
-package br.com.fastDelivery.web.domain.repository;
+package br.com.fastDelivery.web.domain.repository.restaurante;
 
 import br.com.fastDelivery.web.domain.restaurante.Restaurante;
 import org.springframework.data.jpa.repository.JpaRepository;

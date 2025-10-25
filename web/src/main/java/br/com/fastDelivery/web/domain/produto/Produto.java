@@ -1,5 +1,7 @@
 package br.com.fastDelivery.web.domain.produto;
 
+import br.com.fastDelivery.web.domain.dto.produto.DadosAtualizacaoProduto;
+import br.com.fastDelivery.web.domain.dto.produto.DadosCadastroProduto;
 import br.com.fastDelivery.web.domain.restaurante.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,4 +33,18 @@ public class Produto {
     private Restaurante restaurante;
 
 
+    public Produto(DadosCadastroProduto dadosCadastroProduto) {
+        this.descricao = dadosCadastroProduto.descricao();
+        this.preco = dadosCadastroProduto.preco();
+        this.restaurante = new Restaurante(dadosCadastroProduto.idRestaurante());
+    }
+
+    public void atualizarDados(DadosAtualizacaoProduto dadosAtualizacaoProduto) {
+        if (dadosAtualizacaoProduto.descricao() != null){
+            this.descricao = dadosAtualizacaoProduto.descricao();
+        }
+        if (dadosAtualizacaoProduto.preco() != null){
+            this.preco = dadosAtualizacaoProduto.preco();
+        }
+    }
 }

@@ -51,7 +51,7 @@ public class RestauranteController {
         var restaurante = restauranteService.atualizarDadosRestaurante(id, dadosAtualizacaoResturante);
         return ResponseEntity.ok(new DadosDetalhamentoRestaurante(restaurante));
     }
-
+                                                                                    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> inativarCadastro(@PathVariable Long id){
         restauranteService.inativarCadastroRestaurante(id);
