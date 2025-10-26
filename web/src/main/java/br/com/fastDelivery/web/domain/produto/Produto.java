@@ -33,10 +33,10 @@ public class Produto {
     private Restaurante restaurante;
 
 
-    public Produto(DadosCadastroProduto dadosCadastroProduto) {
+    public Produto(Restaurante restaurante, DadosCadastroProduto dadosCadastroProduto) {
         this.descricao = dadosCadastroProduto.descricao();
         this.preco = dadosCadastroProduto.preco();
-        this.restaurante = new Restaurante(dadosCadastroProduto.idRestaurante());
+        this.restaurante = restaurante;
     }
 
     public void atualizarDados(DadosAtualizacaoProduto dadosAtualizacaoProduto) {

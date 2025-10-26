@@ -24,28 +24,28 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<DadosDetalhamentoProduto> cadastrarProduto(@RequestBody @Valid DadosCadastroProduto dadosCadastroProduto,
+    @PostMapping("/cadastrar/{idRestaurante}")
+    public ResponseEntity<DadosDetalhamentoProduto> cadastrarProduto(@PathVariable Long idRestaurante, @RequestBody @Valid DadosCadastroProduto dadosCadastroProduto,
                                                                      UriComponentsBuilder uriComponentsBuilder){
-        var produto = produtoService.cadastroProduto(dadosCadastroProduto);
+        var produto = produtoService.cadastroProduto(idRestaurante, dadosCadastroProduto);
         var uri = uriComponentsBuilder.path("/cadastrar/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoProduto(produto));
     }
 
     @GetMapping("/listar-produtos")
-    public ResponseEntity<Page<DadosListagemProduto>> listarProdutosCadastrados(@PageableDefault(size = 10, sort = {"nome"})
+    public ResponseEntity<Page<DadosListagemProduto>> listarProdutosCadastrados(@PageableDefault(size = 10, sort = {"descricao"})
                                                                                 Pageable pageable){
         var pagina = produtoService.listarProdutos(pageable);
         return ResponseEntity.ok(pagina);
     }
 
-    @PatchMapping("/atualizar-produto")
-    public ResponseEntity<DadosDetalhamentoProduto> atualizarProduto(Long id,@RequestBody @Valid DadosAtualizacaoProduto dadosAtualizacaoProduto){
+    @PatchMapping("/atualizar-produto/{id}")
+    public ResponseEntity<DadosDetalhamentoProduto> atualizarProduto(@PathVariable  Long id, @RequestBody @Valid DadosAtualizacaoProduto dadosAtualizacaoProduto){
         var produto = produtoService.atualizarDadosProduto(id, dadosAtualizacaoProduto);
         return ResponseEntity.ok().body(new DadosDetalhamentoProduto(produto));
     }
 
-    @DeleteMapping("excluir-produto/{id}")
+    @DeleteMapping("/excluir-produto/{id}")
     public ResponseEntity<Void> excluirDadosProduto(@PathVariable Long id){
         produtoService.excluirProduto(id);
         return ResponseEntity.noContent().build();
@@ -54,6 +54,7 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoProduto> encontrarPorID(@PathVariable Long id){
         var produto = produtoService.encontrarPorID(id);
+        produtoService.excluirProduto(id);
         return ResponseEntity.ok(new DadosDetalhamentoProduto(produto));
     }
 

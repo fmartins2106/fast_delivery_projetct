@@ -16,10 +16,11 @@ import org.springframework.stereotype.Service;
 public class ProdutoService {
 
     public final ProdutoRepository produtoRepository;
+    private final RestauranteService restauranteService;
 
-
-    public ProdutoService(ProdutoRepository produtoRepository) {
+    public ProdutoService(ProdutoRepository produtoRepository, RestauranteService restauranteService) {
         this.produtoRepository = produtoRepository;
+        this.restauranteService = restauranteService;
     }
 
     @Transactional
@@ -30,8 +31,9 @@ public class ProdutoService {
 
 
     @Transactional
-    public Produto cadastroProduto(DadosCadastroProduto dadosCadastroProduto){
-        var produto = new Produto(dadosCadastroProduto);
+    public Produto cadastroProduto(Long idRestaurante, DadosCadastroProduto dadosCadastroProduto){
+        var restaurante = restauranteService.pesquisaPorID(idRestaurante);
+        var produto = new Produto(restaurante, dadosCadastroProduto);
         produtoRepository.save(produto);
         return produto;
     }
