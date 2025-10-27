@@ -3,13 +3,11 @@ package br.com.fastDelivery.web.domain.service;
 import br.com.fastDelivery.web.domain.dto.produto.DadosAtualizacaoProduto;
 import br.com.fastDelivery.web.domain.dto.produto.DadosCadastroProduto;
 import br.com.fastDelivery.web.domain.dto.produto.DadosListagemProduto;
-import br.com.fastDelivery.web.domain.dto.restaurante.DadosAtualizacaoResturante;
 import br.com.fastDelivery.web.domain.produto.Produto;
-import br.com.fastDelivery.web.domain.repository.produto.ProdutoRepository;
+import br.com.fastDelivery.web.domain.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 @Service

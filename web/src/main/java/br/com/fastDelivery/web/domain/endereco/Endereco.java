@@ -36,5 +36,23 @@ public class Endereco {
     private String complemento;
 
     @NotNull
+    @Column(name = "tipo_endereco")
+    private String tipoEndereco;
+
+    @NotNull
     private String uf;
+
+
+    public void atualizarDados(Endereco novoEndereco) {
+        this.logradouro = novoEndereco.getLogradouro();
+        this.endereco = novoEndereco.getEndereco();
+        this.numero = novoEndereco.getNumero();
+        this.bairro = novoEndereco.getBairro();
+        this.cidade = novoEndereco.getCidade();
+        this.cep = novoEndereco.getCep();
+        this.complemento = novoEndereco.getComplemento();
+        this.tipoEndereco = novoEndereco.getTipoEndereco();
+        this.uf = novoEndereco.getUf();
+    }
+
 }

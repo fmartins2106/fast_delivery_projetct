@@ -8,5 +8,6 @@ public record DadosEndereco(
         String cidade,
         String cep,
         String complemento,
-        String uf) {
+        String uf,
+        String tipoEndereco) {
 }

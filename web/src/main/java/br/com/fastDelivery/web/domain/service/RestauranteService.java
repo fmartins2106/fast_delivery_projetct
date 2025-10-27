@@ -3,7 +3,7 @@ package br.com.fastDelivery.web.domain.service;
 import br.com.fastDelivery.web.domain.dto.restaurante.DadosAtualizacaoResturante;
 import br.com.fastDelivery.web.domain.dto.restaurante.DadosCadastroRestaurante;
 import br.com.fastDelivery.web.domain.dto.restaurante.DadosListagemRestaurante;
-import br.com.fastDelivery.web.domain.repository.restaurante.RestauranteRepository;
+import br.com.fastDelivery.web.domain.repository.RestauranteRepository;
 import br.com.fastDelivery.web.domain.restaurante.Restaurante;
 import br.com.fastDelivery.web.domain.service.specification.RestauranteSpecification;
 import jakarta.transaction.Transactional;
