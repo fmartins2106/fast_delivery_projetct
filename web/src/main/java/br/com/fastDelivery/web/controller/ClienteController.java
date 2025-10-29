@@ -6,7 +6,6 @@ import br.com.fastDelivery.web.domain.dto.cliente.DadosDetalhamentoCliente;
 import br.com.fastDelivery.web.domain.dto.cliente.DadosListagemClientes;
 import br.com.fastDelivery.web.domain.service.ClienteService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -41,7 +40,7 @@ public class ClienteController {
     }
 
     @PatchMapping("/atualizar-dados-cliente/{id}")
-    public ResponseEntity<DadosDetalhamentoCliente> atualizarDadosCliente(Long id, @RequestBody @Valid DadosAtualizacaoCliente dadosAtualizacaoCliente){
+    public ResponseEntity<DadosDetalhamentoCliente> atualizarDadosCliente(@PathVariable  Long id, @RequestBody @Valid DadosAtualizacaoCliente dadosAtualizacaoCliente){
         var cliente = clienteService.atualizarDadosCliente(id, dadosAtualizacaoCliente);
         return ResponseEntity.ok(new DadosDetalhamentoCliente(cliente));
     }

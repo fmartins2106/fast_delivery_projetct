@@ -6,6 +6,7 @@ import br.com.fastDelivery.web.domain.endereco.Endereco;
 import java.util.List;
 
 public record DadosDetalhamentoCliente(
+        Long id,
         String nomeCompleto,
         String telefone,
         String cpf,
@@ -13,7 +14,7 @@ public record DadosDetalhamentoCliente(
 
 
     public DadosDetalhamentoCliente(Cliente cliente){
-        this(cliente.getNomeCompleto(), cliente.getTelefone(),
+        this(cliente.getId(), cliente.getNomeCompleto(), cliente.getTelefone(),
                 cliente.getCpf(), cliente.getEnderecos());
     }
 }

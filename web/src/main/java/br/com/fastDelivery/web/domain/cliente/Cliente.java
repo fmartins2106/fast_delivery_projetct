@@ -45,8 +45,6 @@ public class Cliente {
         this.nomeCompleto = dadosCadastroCliente.nomeCompleto();
         this.telefone = dadosCadastroCliente.telefone();
         this.cpf = dadosCadastroCliente.cpf();
-        Endereco endereco = new Endereco(dadosCadastroCliente.enderecos(), this);
-        this.enderecos.add(endereco);
         this.ativo = true;
     }
 
@@ -62,14 +60,14 @@ public class Cliente {
             this.cpf = dados.cpf();
         }
 
-        // Atualiza endereço existente pelo tipo
-        if (dados.endereco() != null && dados.tipoEndereco() != null) {
-            this.enderecos.stream()
-                    .filter(e -> e.getTipoEndereco().equalsIgnoreCase(dados.tipoEndereco()))
-                    .findFirst()
-                    .ifPresent(e -> e.atualizarDados(dados.endereco()));
-            // se não encontrar, simplesmente não faz nada
-        }
+//        // Atualiza endereço existente pelo tipo
+//        if (dados.endereco() != null && dados.tipoEndereco() != null) {
+//            this.enderecos.stream()
+//                    .filter(e -> e.getTipoEndereco().equalsIgnoreCase(dados.tipoEndereco()))
+//                    .findFirst()
+//                    .ifPresent(e -> e.atualizarDados(dados.endereco()));
+//            // se não encontrar, simplesmente não faz nada
+//        }
     }
 
 
