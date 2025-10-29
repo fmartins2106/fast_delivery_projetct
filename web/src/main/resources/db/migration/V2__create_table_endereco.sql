@@ -7,5 +7,8 @@ create table enderecos(
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     cep VARCHAR(8) NOT NULL,
-    uf VARCHAR(2) NOT NULL
+    uf VARCHAR(2) NOT NULL,
+    id_cliente INT NULL,
+    tipo_endereco VARCHAR(30),
+    CONSTRAINT fk_endereco_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id)
 );

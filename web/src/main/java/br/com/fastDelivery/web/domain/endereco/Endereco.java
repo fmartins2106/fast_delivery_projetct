@@ -1,6 +1,9 @@
 package br.com.fastDelivery.web.domain.endereco;
 
+import br.com.fastDelivery.web.domain.cliente.Cliente;
+import br.com.fastDelivery.web.domain.dto.endereco.DadosEndereco;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -42,6 +45,23 @@ public class Endereco {
     @NotNull
     private String uf;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", nullable = true)
+    private Cliente cliente;
+
+    public Endereco(DadosEndereco dadosEndereco, Cliente cliente) {
+        this.logradouro = dadosEndereco.logradouro();
+        this.endereco = dadosEndereco.endereco();
+        this.numero = dadosEndereco.numero();
+        this.bairro = dadosEndereco.bairro();
+        this.cidade = dadosEndereco.cidade();
+        this.cep = dadosEndereco.cep();
+        this.complemento = dadosEndereco.complemento();
+        this.uf = dadosEndereco.uf();
+        this.tipoEndereco = dadosEndereco.tipoEndereco();
+        this.cliente = cliente;
+    }
+
 
     public void atualizarDados(Endereco novoEndereco) {
         this.logradouro = novoEndereco.getLogradouro();
@@ -53,6 +73,9 @@ public class Endereco {
         this.complemento = novoEndereco.getComplemento();
         this.tipoEndereco = novoEndereco.getTipoEndereco();
         this.uf = novoEndereco.getUf();
+        if (this.cliente != null){
+            this.cliente = novoEndereco.getCliente();
+        }
     }
 
 }

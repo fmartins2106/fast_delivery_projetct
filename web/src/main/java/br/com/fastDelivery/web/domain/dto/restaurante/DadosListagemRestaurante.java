@@ -26,7 +26,9 @@ public record DadosListagemRestaurante(
                         restaurante.getEndereco().getCidade(),
                         restaurante.getEndereco().getCep(),
                         restaurante.getEndereco().getComplemento(),
-                        restaurante.getEndereco().getUf()
+                        restaurante.getEndereco().getUf(),
+                        restaurante.getEndereco().getTipoEndereco(),
+                        restaurante.getEndereco().getCliente()
                 ) : null
                 , restaurante.getHoraAbertura(),
                 restaurante.getHoraFechamento(), restaurante.getPedidoMinimo());

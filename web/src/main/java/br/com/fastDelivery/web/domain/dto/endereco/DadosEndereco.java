@@ -1,5 +1,8 @@
 package br.com.fastDelivery.web.domain.dto.endereco;
 
+import br.com.fastDelivery.web.domain.cliente.Cliente;
+import jakarta.validation.constraints.NotNull;
+
 public record DadosEndereco(
         String logradouro,
         String endereco,
@@ -9,5 +12,7 @@ public record DadosEndereco(
         String cep,
         String complemento,
         String uf,
-        String tipoEndereco) {
+        String tipoEndereco,
+        Cliente cliente) {
+
 }

@@ -38,15 +38,15 @@ public class Cliente {
     @NotNull
     private boolean ativo;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_endereco")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cliente",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Cliente(DadosCadastroCliente dadosCadastroCliente) {
         this.nomeCompleto = dadosCadastroCliente.nomeCompleto();
         this.telefone = dadosCadastroCliente.telefone();
         this.cpf = dadosCadastroCliente.cpf();
-        this.enderecos.add(dadosCadastroCliente.endereco());
+        Endereco endereco = new Endereco(dadosCadastroCliente.enderecos(), this);
+        this.enderecos.add(endereco);
         this.ativo = true;
     }
 

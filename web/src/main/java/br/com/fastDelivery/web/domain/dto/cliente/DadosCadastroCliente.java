@@ -1,6 +1,7 @@
 package br.com.fastDelivery.web.domain.dto.cliente;
 
 import br.com.fastDelivery.web.domain.cliente.Cliente;
+import br.com.fastDelivery.web.domain.dto.endereco.DadosEndereco;
 import br.com.fastDelivery.web.domain.endereco.Endereco;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -16,12 +17,13 @@ public record DadosCadastroCliente(
         String telefone,
 
         @NotBlank(message = "Digite o seu cpf")
-        @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")
+        @Pattern(regexp = "(\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2})",
+                message = "CPF inválido. Use apenas números ou o formato 000.000.000-00")
         String cpf,
 
         @NotNull
         @Valid
-        Endereco endereco) {
+        DadosEndereco enderecos) {
 
 
 }
