@@ -4,6 +4,7 @@ import br.com.fastDelivery.web.domain.cliente.Cliente;
 import br.com.fastDelivery.web.domain.dto.endereco.DadosAtualizacaoEnderecoCliente;
 import br.com.fastDelivery.web.domain.dto.endereco.DadosCadastroEndereco;
 import br.com.fastDelivery.web.domain.dto.endereco.DadosEndereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -49,6 +50,7 @@ public class Endereco {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = true)
+    @JsonIgnore
     private Cliente cliente;
 
 
@@ -58,6 +60,7 @@ public class Endereco {
         this.numero = dadosCadastroEndereco.numero();
         this.bairro = dadosCadastroEndereco.bairro();
         this.cidade = dadosCadastroEndereco.cidade();
+        this.cep = dadosCadastroEndereco.cep();
         this.complemento = dadosCadastroEndereco.complemento();
         this.uf = dadosCadastroEndereco.uf();
         this.tipoEndereco = dadosCadastroEndereco.tipoEndereco();

@@ -1,7 +1,5 @@
 package br.com.fastDelivery.web.domain.dto.endereco;
 
-import br.com.fastDelivery.web.domain.cliente.Cliente;
-import br.com.fastDelivery.web.domain.endereco.Endereco;
 import jakarta.validation.constraints.NotBlank;
 
 public record DadosCadastroEndereco(
