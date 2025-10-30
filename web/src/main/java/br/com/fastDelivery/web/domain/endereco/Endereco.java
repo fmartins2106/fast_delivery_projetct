@@ -1,6 +1,8 @@
 package br.com.fastDelivery.web.domain.endereco;
 
 import br.com.fastDelivery.web.domain.cliente.Cliente;
+import br.com.fastDelivery.web.domain.dto.endereco.DadosAtualizacaoEnderecoCliente;
+import br.com.fastDelivery.web.domain.dto.endereco.DadosCadastroEndereco;
 import br.com.fastDelivery.web.domain.dto.endereco.DadosEndereco;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -49,33 +51,49 @@ public class Endereco {
     @JoinColumn(name = "id_cliente", nullable = true)
     private Cliente cliente;
 
-    public Endereco(DadosEndereco dadosEndereco, Cliente cliente) {
-        this.logradouro = dadosEndereco.logradouro();
-        this.endereco = dadosEndereco.endereco();
-        this.numero = dadosEndereco.numero();
-        this.bairro = dadosEndereco.bairro();
-        this.cidade = dadosEndereco.cidade();
-        this.cep = dadosEndereco.cep();
-        this.complemento = dadosEndereco.complemento();
-        this.uf = dadosEndereco.uf();
-        this.tipoEndereco = dadosEndereco.tipoEndereco();
+
+    public Endereco(Cliente cliente, DadosCadastroEndereco dadosCadastroEndereco) {
+        this.logradouro = dadosCadastroEndereco.logradouro();
+        this.endereco = dadosCadastroEndereco.endereco();
+        this.numero = dadosCadastroEndereco.numero();
+        this.bairro = dadosCadastroEndereco.bairro();
+        this.cidade = dadosCadastroEndereco.cidade();
+        this.complemento = dadosCadastroEndereco.complemento();
+        this.uf = dadosCadastroEndereco.uf();
+        this.tipoEndereco = dadosCadastroEndereco.tipoEndereco();
         this.cliente = cliente;
     }
 
 
-    public void atualizarDados(Endereco novoEndereco) {
-        this.logradouro = novoEndereco.getLogradouro();
-        this.endereco = novoEndereco.getEndereco();
-        this.numero = novoEndereco.getNumero();
-        this.bairro = novoEndereco.getBairro();
-        this.cidade = novoEndereco.getCidade();
-        this.cep = novoEndereco.getCep();
-        this.complemento = novoEndereco.getComplemento();
-        this.tipoEndereco = novoEndereco.getTipoEndereco();
-        this.uf = novoEndereco.getUf();
-        if (this.cliente != null){
-            this.cliente = novoEndereco.getCliente();
+    public void atualizarEndereco(DadosAtualizacaoEnderecoCliente dados) {
+        if (dados.logradouro() != null && !dados.logradouro().isBlank()) {
+            this.logradouro = dados.logradouro();
+        }
+        if (dados.endereco() != null && !dados.endereco().isBlank()) {
+            this.endereco = dados.endereco();
+        }
+        if (dados.numero() != null && !dados.numero().isBlank()) {
+            this.numero = dados.numero();
+        }
+        if (dados.bairro() != null && !dados.bairro().isBlank()) {
+            this.bairro = dados.bairro();
+        }
+        if (dados.cidade() != null && !dados.cidade().isBlank()) {
+            this.cidade = dados.cidade();
+        }
+        if (dados.cep() != null && !dados.cep().isBlank()) {
+            this.cep = dados.cep();
+        }
+        if (dados.complemento() != null && !dados.complemento().isBlank()) {
+            this.complemento = dados.complemento();
+        }
+        if (dados.tipoEndereco() != null && !dados.tipoEndereco().isBlank()) {
+            this.tipoEndereco = dados.tipoEndereco();
+        }
+        if (dados.uf() != null && !dados.uf().isBlank()) {
+            this.uf = dados.uf();
         }
     }
+
 
 }

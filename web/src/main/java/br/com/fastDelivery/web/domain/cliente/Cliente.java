@@ -2,6 +2,7 @@ package br.com.fastDelivery.web.domain.cliente;
 
 import br.com.fastDelivery.web.domain.dto.cliente.DadosAtualizacaoCliente;
 import br.com.fastDelivery.web.domain.dto.cliente.DadosCadastroCliente;
+import br.com.fastDelivery.web.domain.dto.endereco.DadosAtualizacaoEnderecoCliente;
 import br.com.fastDelivery.web.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -69,6 +70,7 @@ public class Cliente {
 //            // se não encontrar, simplesmente não faz nada
 //        }
     }
+
 
 
 }

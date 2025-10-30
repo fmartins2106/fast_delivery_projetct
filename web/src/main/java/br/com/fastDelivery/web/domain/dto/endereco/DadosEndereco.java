@@ -1,7 +1,6 @@
 package br.com.fastDelivery.web.domain.dto.endereco;
 
 import br.com.fastDelivery.web.domain.cliente.Cliente;
-import jakarta.validation.constraints.NotNull;
 
 public record DadosEndereco(
         String logradouro,
