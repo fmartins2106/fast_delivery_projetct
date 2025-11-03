@@ -18,7 +18,7 @@ public class TokenService {
     @Value("${token.api.authentication.secret}")
     private String secret;
 
-    private String gerarToken(Usuario usuario) {
+    public String gerarToken(Usuario usuario) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         try {
             return JWT.create()
@@ -32,7 +32,7 @@ public class TokenService {
     }
 
 
-    private String refreshToken(Usuario usuario) {
+    public String refreshToken(Usuario usuario) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         try {
             return JWT.create()
@@ -45,7 +45,7 @@ public class TokenService {
         }
     }
 
-    private String getSubject(String tokenJWT) {
+    public String getSubject(String tokenJWT) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
@@ -58,7 +58,7 @@ public class TokenService {
         }
     }
 
-    private Instant tempoExpiracao() {
+    public Instant tempoExpiracao() {
         return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"))
                 .plusHours(6)
                 .toInstant();
