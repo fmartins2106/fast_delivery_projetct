@@ -1,5 +1,8 @@
 package br.com.fastDelivery.web.domain.usuario;
 
+import br.com.fastDelivery.web.domain.dto.usuario.DadosAlteracaoSenha;
+import br.com.fastDelivery.web.domain.dto.usuario.DadosAtualizacaoUsuario;
+import br.com.fastDelivery.web.domain.dto.usuario.DadosCadastroUsuario;
 import br.com.fastDelivery.web.domain.usuario.perfil.Perfil;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -10,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,6 +58,20 @@ public class Usuario implements UserDetails {
     inverseJoinColumns = @JoinColumn(name = "perfil_id"))
     private List<Perfil> perfis = new ArrayList<>();
 
+
+    public Usuario(DadosCadastroUsuario dadosCadastroUsuario, PasswordEncoder passwordEncoder) {
+        this.nomeCompleto = dadosCadastroUsuario.nomeCompleto();
+        this.email = dadosCadastroUsuario.email();
+        this.senha = passwordEncoder.encode(dadosCadastroUsuario.senha());
+    }
+
+    public Usuario(DadosCadastroUsuario dadosCadastroUsuario, String senhaCriptografada, Perfil perfil) {
+        this.nomeCompleto = dadosCadastroUsuario.nomeCompleto();
+        this.senha = senhaCriptografada;
+        this.perfis.add(perfil);
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return perfis;
@@ -67,5 +85,23 @@ public class Usuario implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    public void alterarDadosUsuario(DadosAtualizacaoUsuario dadosAtualizacaoUsuario) {
+        if (dadosAtualizacaoUsuario.nomeCompleto() != null){
+            this.nomeCompleto = dadosAtualizacaoUsuario.nomeCompleto();
+        }
+        if (dadosAtualizacaoUsuario.email() != null){
+            this.email = dadosAtualizacaoUsuario.email();
+        }
+    }
+
+    public void verificadoTrue() {
+        this.verificado = true;
+    }
+
+
+    public void alterarSenha(String senhaCriptografada) {
+        this.senha = senhaCriptografada;
     }
 }
