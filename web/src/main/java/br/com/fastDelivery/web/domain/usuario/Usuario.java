@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "Usuario")
 @Table(name = "usuarios")
@@ -59,10 +60,14 @@ public class Usuario implements UserDetails {
     private List<Perfil> perfis = new ArrayList<>();
 
 
-    public Usuario(DadosCadastroUsuario dadosCadastroUsuario, PasswordEncoder passwordEncoder) {
+    public Usuario(DadosCadastroUsuario dadosCadastroUsuario, PasswordEncoder passwordEncoder, Perfil perfil) {
         this.nomeCompleto = dadosCadastroUsuario.nomeCompleto();
         this.email = dadosCadastroUsuario.email();
         this.senha = passwordEncoder.encode(dadosCadastroUsuario.senha());
+        this.token = UUID.randomUUID().toString();
+        this.expiracaoToken = LocalDateTime.now().plusMinutes(5);
+        this.ativo = false;
+        this.perfis.add(perfil);
     }
 
     public Usuario(DadosCadastroUsuario dadosCadastroUsuario, String senhaCriptografada, Perfil perfil) {

@@ -1,5 +1,6 @@
 package br.com.fastDelivery.web.domain.dto.usuario;
 
+import br.com.fastDelivery.web.domain.usuario.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -17,4 +18,9 @@ public record DadosCadastroUsuario(
         @Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\\[\\]:;\"'<>,.?/~`\\\\|-]).{8,}$",
         message = "Senha precisa contar uma letra maiuscula, um caracter e pelo menos 8 digitos.")
         String senha) {
+
+    public DadosCadastroUsuario(Usuario usuario) {
+        this(usuario.getNomeCompleto(), usuario.getEmail(),
+                usuario.getSenha());
+    }
 }
